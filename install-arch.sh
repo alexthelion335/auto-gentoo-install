@@ -45,7 +45,7 @@ timedatectl status
 echo -e "\nTime and date set!"
 echo -e "\nInstalling base system..."
 sleep 1
-pacstrap /mnt base linux linux-firmware
+pacstrap /mnt base linux linux-firmware nano vim sudo base-devel git networkmanager dhcpcd grub xorg-server xf86-video-vesa xorg-xinit neofetch i3-gaps i3lock i3status openbox tint2 nitrogen firefox konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
 echo -e "\nBase system installed!"
 genfstab -U /mnt >> /mnt/etc/fstab
 echo -e "\nFstab configured!"
