@@ -8,8 +8,7 @@ ln -sf /usr/share/zoneinfo/America/New_York
 hwclock --systohc
 echo -e "\nInstalling other necessities..."
 pacman -S nano vim sudo base-devel git networkmanager dhcpcd grub xorg-server xf86-video-vesa xorg-xinit neofetch i3-gaps i3lock i3status feh firefox konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay << EOF
-
-
+y
 
 EOF
 echo -e "\nOther necessities installed!"
