@@ -25,6 +25,8 @@ mkdir -p /home/$user/.config/openbox
 touch /home/$user/.config/openbox/autostart
 printf "\npicom &\nnitrogen --restore &\ntint2 &" >> /home/$user/.config/openbox/autostart
 echo -e "\nexec openbox" >> /home/$user/.xinitrc
+rm /var/lib/AccountsService/users/$user
+echo -e "[User]\nLanguage=\nSession=\nXSession=openbox\nIcon=/home/$user/.face\nSystemAccount=false\n" >> /var/lib/AccountsService/users/$user
 echo -e "\nUser settings set!"
 grub-install $drive
 grub-mkconfig -o /boot/grub/grub.cfg
