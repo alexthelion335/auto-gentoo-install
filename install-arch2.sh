@@ -21,13 +21,19 @@ $passwd
 EOF
 usermod -aG wheel,audio,video,optical,storage $user
 printf "\n%%wheel ALL=(ALL) ALL" >> /etc/sudoers
-echo "exec i3" >> /home/$user/.xinitrc
+mkdir /home/$user/.config/openbox
+touch /home/$user/.config/openbox/autostart
+printf "\npicom &\nnitrogen --restore &\ntint2 &" >> /home/$user/.config/openbox/autostart
+echo -e "\nexec openbox" >> /home/$user/.xinitrc
 echo -e "\nUser settings set!"
 grub-install $drive
 grub-mkconfig -o /boot/grub/grub.cfg
 echo -e "\nGrub installed!"
-echo -e "\nArch Linux configuration complete!\nRebooting..."
+systemctl enable dhcpcd
+systemctl enable gdm
+echo -e "\nServices enabled!"
+echo -e "\nArch Linux configuration complete!\nYou will have to reboot."
 sleep 3
-reboot
+exit
 
 
