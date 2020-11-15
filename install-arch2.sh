@@ -21,7 +21,7 @@ $passwd
 EOF
 usermod -aG wheel,audio,video,optical,storage $user
 printf "\n%%wheel ALL=(ALL) ALL" >> /etc/sudoers
-mkdir /home/$user/.config/openbox
+mkdir -p /home/$user/.config/openbox
 touch /home/$user/.config/openbox/autostart
 printf "\npicom &\nnitrogen --restore &\ntint2 &" >> /home/$user/.config/openbox/autostart
 echo -e "\nexec openbox" >> /home/$user/.xinitrc
@@ -31,6 +31,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo -e "\nGrub installed!"
 systemctl enable dhcpcd
 systemctl enable gdm
+systemctl enable NetworkManager
 echo -e "\nServices enabled!"
 echo -e "\nArch Linux configuration complete!\nYou will have to reboot."
 sleep 3
