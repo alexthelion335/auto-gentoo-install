@@ -28,7 +28,7 @@ echo -e "\nexec openbox" >> /home/$user/.xinitrc
 rm /var/lib/AccountsService/users/$user
 echo -e "[User]\nLanguage=\nSession=\nXSession=openbox\nIcon=/home/$user/.face\nSystemAccount=false\n" >> /var/lib/AccountsService/users/$user
 echo -e "\nUser settings set!"
-grub-install $drive
+grub-install --target=i386-pc $drive
 grub-mkconfig -o /boot/grub/grub.cfg
 echo -e "\nGrub installed!"
 systemctl enable dhcpcd
