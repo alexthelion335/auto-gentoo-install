@@ -1,16 +1,16 @@
 #!/bin/bash
 drive=/dev/sda
-hostname=new-arch-box
+hostname=new-gentoo-box
 user=alex
 passwd=password
 echo "--------------------------"
 echo "-  Welcome to            -"
 echo "-  Alex Kinch's          -"
-echo "-  Arch Install          -"
+echo "-  Gentoo Install        -"
 echo "-  script!               -"
 echo "--------------------------"
 sleep 1
-echo -e "\nYou will need to know what drive to install Arch Linux on."
+echo -e "\nYou will need to know what drive to install Gentoo Linux on."
 echo "If it is not /dev/sda, you will need to change the script."
 sleep 1
 fdisk ${drive} << EOF
