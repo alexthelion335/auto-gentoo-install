@@ -1,6 +1,6 @@
 #!/bin/bash
 drive=/dev/sda
-hostname=new-arch-box
+hostname=new-gentoo-box
 user=alex
 passwd=password
 echo -e "\nContinuing installation..."
@@ -35,7 +35,7 @@ systemctl enable dhcpcd
 systemctl enable gdm
 systemctl enable NetworkManager
 echo -e "\nServices enabled!"
-echo -e "\nArch Linux configuration complete!\nYou will have to reboot."
+echo -e "\nGentoo Linux configuration complete!\nYou will have to reboot."
 sleep 3
 exit
 
