@@ -45,7 +45,10 @@ timedatectl status
 echo -e "\nTime and date set!"
 echo -e "\nInstalling base system..."
 sleep 1
-pacstrap /mnt base linux linux-firmware nano vim sudo base-devel git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa xorg-xinit neofetch openbox tint2 nitrogen gdm firefox konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
+wget https://distfiles.gentoo.org/releases/amd64/autobuilds/latest-stage3-amd64-desktop-openrc.txt
+cat latest-stage3-amd64-desktop-openrc.txt | sed -n -e 's/stage3-amd64-desktop-openrc-.*.tar.xz.*$//p'    need to fix
+wget https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-desktop-openrc/stage3-amd64-desktop-openrc-*.tar.xz
+emerge linux-firmware nano vim sudo base-devel git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
 echo -e "\nBase system installed!"
 genfstab -U /mnt >> /mnt/etc/fstab
 echo -e "\nFstab configured!"
