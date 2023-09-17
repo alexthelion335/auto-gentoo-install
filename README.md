@@ -1,5 +1,8 @@
-# auto-arch-install
-These are my scripts to automatically install Arch Linux.
+# auto-gentoo-install
+These are my scripts to automatically install Gentoo Linux. This is currently a work in progress.
+
+**IGNORE INSTALL DIRECTIONS BELOW**
+
 # How to install
 1. Install git to the Arch live CD by typing ```pacman -S git```
 2. Type ```git clone https://www.github.com/alexthelion335/auto-arch-install.git``` to download the scripts.
