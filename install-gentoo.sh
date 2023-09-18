@@ -52,6 +52,8 @@ wget https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 echo -e "\nStage 3 downloaded and extracted!"
 cp install-gentoo2.sh /mnt/gentoo
+echo -e "\nCopying DNS info"
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 echo -e "\nYou will have to type ./install-gentoo2.sh to continue. Also, set CFLAGS and MAKEOPTS in /etc/portage/make.conf"
 arch-chroot /mnt/gentoo
 
