@@ -38,21 +38,20 @@ echo -e "\nDrive $drive was formatted!"
 mkfs.ext4 ${drive}1
 mkswap ${drive}2
 swapon ${drive}2
-mount ${drive}1 /mnt
+mkdir /mnt/gentoo
+mount ${drive}1 /mnt/gentoo
 echo -e "\nSwap activated and drive mounted!"
-timedatectl set-ntp true
-timedatectl status
+chronyd -q
 echo -e "\nTime and date set!"
-echo -e "\nInstalling base system..."
+echo -e "\nDownloading latest stage 3 tarball..."
 sleep 1
+cd /mnt/gentoo
 wget https://distfiles.gentoo.org/releases/amd64/autobuilds/latest-stage3-amd64-desktop-openrc.txt
-cat latest-stage3-amd64-desktop-openrc.txt | sed -n -e 's/stage3-amd64-desktop-openrc-.*.tar.xz.*$//p'    need to fix
-wget https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-desktop-openrc/stage3-amd64-desktop-openrc-*.tar.xz
-emerge linux-firmware nano vim sudo base-devel git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
-echo -e "\nBase system installed!"
-genfstab -U /mnt >> /mnt/etc/fstab
-echo -e "\nFstab configured!"
-cp install-arch2.sh /mnt/
-echo -e "\nYou will have to type ./install-arch2.sh to continue."
-arch-chroot /mnt
+stage3=`cat latest-stage3-amd64-desktop-openrc.txt | grep -wo 'stage3-amd64-desktop-openrc-.*.tar.xz'`
+wget https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-desktop-openrc/$stage3
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+echo -e "\nStage 3 downloaded and extracted!"
+cp install-gentoo2.sh /mnt/gentoo
+echo -e "\nYou will have to type ./install-gentoo2.sh to continue. Also, set CFLAGS and MAKEOPTS in /etc/portage/make.conf"
+arch-chroot /mnt/gentoo
 
