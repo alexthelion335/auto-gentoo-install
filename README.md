@@ -1,14 +1,12 @@
 # auto-gentoo-install
 These are my scripts to automatically install Gentoo Linux. This is currently a work in progress.
 
-**IGNORE INSTALL DIRECTIONS BELOW**
-
 # How to install
-1. Install git to the Arch live CD by typing ```pacman -S git```
-2. Type ```git clone https://www.github.com/alexthelion335/auto-arch-install.git``` to download the scripts.
+1. Git can't be installed easily on the Gentoo LiveCD, go we have to use wget
+2. Type ```wget https://www.github.com/alexthelion335/auto-arch-install/raw/main/install-gentoo.sh && wget https://www.github.com/alexthelion335/auto-arch-install/raw/main/install-gentoo2.sh``` to download the scripts.
 3. Edit the variables at the top of both scripts to change the drive you want to install on, user, and password.
-4. Type ```sh ./install-arch.sh``` to start part one of the installation.
-5. When the script pauses and tells you to type something, type ```sh ./install-arch2.sh``` to do the last part of the installation.
+4. Type ```sh ./install-gentoo.sh``` to start part one of the installation.
+5. When the script pauses and tells you to type something, type ```sh ./install-gentoo2.sh``` to do the last part of the installation.
 6. Type ```reboot``` to reboot.
 # Defaults
-The scripts will install Arch Linux on ```/dev/sda``` by default. The username is ```alex``` and the default password is ```password```.
+The scripts will install Gentoo Linux on ```/dev/sda``` by default. The username is ```alex``` and the default password is ```password```.
