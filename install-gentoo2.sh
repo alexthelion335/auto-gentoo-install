@@ -4,9 +4,35 @@ hostname=new-gentoo-box
 user=alex
 passwd=password
 echo -e "\nContinuing installation..."
-ln -sf /usr/share/zoneinfo/America/New_York
-hwclock --systohc
+echo -e "\nInstalling ebuild repository"
+emerge-webrsync
+echo -e "\nUpdating @world set"
+emerge --verbose --update --deep --newuse @world
+echo -e "\nAdding Eastern Timezone"
+echo "America/New_York" > /etc/timezone
+echo -e "\nAdding en_US locale"
+rm /etc/locale.gen
+echo -e "en_US ISO-8859-1\nen_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+eselect locale set 5
+echo -e "Updating environment after locale change"
+env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+echo -e "Installing Linux kernel and firmware"
+emerge sys-kernel/linux-firmware
+emerge sys-kernel/installkernel-gentoo
+emerge sys-kernel/gentoo-kernel
+emerge --depclean
+echo -e "Kernel install complete!"
+echo -e "Writing /etc/fstab"
+echo -e "/dev/sda1  /  ext4  defaults  0 1\n/dev/sda2  none  swap  sw  0 0" >> /etc/fstab
 echo $hostname >> /etc/hostname
+echo -e "Emerging dhcpcd and networkmanager"
+emerge net-misc/dhcpcd net-misc/networkmanager
+echo -e "Starting dhcpcd and networkmanager services"
+rc-update add dhcpcd default
+rc-service dhcpcd start
+rc-update add networkmanager default
+rc-service networkmanager start
 rm /etc/hosts
 echo -e "127.0.0.1    localhost\n::1        localhost\n127.0.1.1    ${hostname}.localdomain ${hostname}" >> /etc/hosts
 echo -e "\nHostname set!"
@@ -14,6 +40,13 @@ passwd << EOF
 $passwd
 $passwd
 EOF
+echo -e "Emerging tools and programs"
+emerge app-admin/syslogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules linux-firmware nano vim sudo base-devel git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
+echo -e "Adding syslogd, cronie, sshd, and chronyd services to startup"
+rc-update add syslogd default
+rc-update add cronie default
+rc-update add sshd default
+rc-update add chronyd default
 useradd -m $user
 passwd $user << EOF
 $passwd
@@ -25,16 +58,10 @@ mkdir -p /home/$user/.config/openbox
 touch /home/$user/.config/openbox/autostart
 printf "\npicom &\nnitrogen --restore &\ntint2 &" >> /home/$user/.config/openbox/autostart
 echo -e "\nexec openbox" >> /home/$user/.xinitrc
-rm /var/lib/AccountsService/users/$user
-echo -e "[User]\nLanguage=\nSession=\nXSession=openbox\nIcon=/home/$user/.face\nSystemAccount=false\n" >> /var/lib/AccountsService/users/$user
 echo -e "\nUser settings set!"
 grub-install --target=i386-pc $drive
 grub-mkconfig -o /boot/grub/grub.cfg
 echo -e "\nGrub installed!"
-systemctl enable dhcpcd
-systemctl enable gdm
-systemctl enable NetworkManager
-echo -e "\nServices enabled!"
 echo -e "\nGentoo Linux configuration complete!\nYou will have to reboot."
 sleep 3
 exit
