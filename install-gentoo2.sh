@@ -41,9 +41,10 @@ $passwd
 $passwd
 EOF
 mkdir -p /etc/portage/package.use
-#echo "xorg-server -minimal" >> /etc/portage/package.use/x11
+echo "acct-user/git -git -gitea -gitolite" >> /etc/portage/package.use/git
+echo -e ">=dev-libs/libdbusmenu-16.04.0-r2 gtk3\n>=gnome-base/gnome-control-center-44.3 networkmanager\n>=media-libs/libcanberra-0.30-r7 pulseaudio\n>=media-plugins/alsa-plugins-1.2.7.1-r1 pulseaudio" >> misc
 echo -e "Emerging tools and programs"
-emerge app-admin/sysklogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules nano vim sudo base-devel acct-user/git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar kde-apps/dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
+emerge app-admin/sysklogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules nano vim sudo acct-user/git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar kde-apps/dolphin picom inkscape gimp cmatrix lynx cowsay
 echo -e "Adding sysklogd, cronie, sshd, and chronyd services to startup"
 rc-update add sysklogd default
 rc-update add cronie default
