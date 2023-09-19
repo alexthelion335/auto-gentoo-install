@@ -43,7 +43,7 @@ EOF
 mkdir -p /etc/portage/package.use
 #echo "xorg-server -minimal" >> /etc/portage/package.use/x11
 echo -e "Emerging tools and programs"
-emerge app-admin/sysklogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules linux-firmware nano vim sudo base-devel acct-user/git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar kde-apps/dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
+emerge app-admin/sysklogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules nano vim sudo base-devel acct-user/git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar kde-apps/dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
 echo -e "Adding sysklogd, cronie, sshd, and chronyd services to startup"
 rc-update add sysklogd default
 rc-update add cronie default
