@@ -40,8 +40,10 @@ passwd << EOF
 $passwd
 $passwd
 EOF
+mkdir -p /etc/portage/package.use
+echo "xorg-server -minimal" >> /etc/portage/package.use/x11
 echo -e "Emerging tools and programs"
-emerge app-admin/syslogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules linux-firmware nano vim sudo base-devel git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
+emerge app-admin/syslogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules linux-firmware nano vim sudo base-devel acct-user/git wget networkmanager dhcpcd grub xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox-bin konsole xterm mpv thunar dolphin picom inkscape gimp cmatrix lynx lolcat cowsay
 echo -e "Adding syslogd, cronie, sshd, and chronyd services to startup"
 rc-update add syslogd default
 rc-update add cronie default
