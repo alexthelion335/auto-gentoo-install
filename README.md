@@ -1,5 +1,6 @@
 # auto-gentoo-install
 These are my scripts to automatically install Gentoo Linux. This is currently a work in progress.
+*Note: If this script is being run on installation media other than the Gentoo LiveCD, it needs to be run as root*
 
 # How to install
 1. Git can't be installed easily on the Gentoo LiveCD, go we have to use wget
