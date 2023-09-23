@@ -42,7 +42,7 @@ $passwd
 EOF
 mkdir -p /etc/portage/package.use
 echo "acct-user/git -git -gitea -gitolite" >> /etc/portage/package.use/git
-echo -e ">=dev-libs/libdbusmenu-16.04.0-r2 gtk3\n>=gnome-base/gnome-control-center-44.3 networkmanager\n>=media-libs/libcanberra-0.30-r7 pulseaudio\n>=media-plugins/alsa-plugins-1.2.7.1-r1 pulseaudio\n# required by www-client/firefox-102.15.1::gentoo[system-libvpx]\n# required by firefox (argument)\n>=media-libs/libvpx-1.13.0 postproc" >> misc
+echo -e ">=dev-libs/libdbusmenu-16.04.0-r2 gtk3\n>=gnome-base/gnome-control-center-44.3 networkmanager\n>=media-libs/libcanberra-0.30-r7 pulseaudio\n>=media-plugins/alsa-plugins-1.2.7.1-r1 pulseaudio\n# required by www-client/firefox-102.15.1::gentoo[system-libvpx]\n# required by firefox (argument)\n>=media-libs/libvpx-1.13.0 postproc" >> /etc/portage/package.use/misc
 echo -e "Emerging tools and programs"
 emerge app-admin/sysklogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules nano vim sudo acct-user/git wget grub app-misc/screen elogind xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox konsole xterm mpv thunar kde-apps/dolphin picom inkscape gimp cmatrix lynx cowsay
 echo -e "Adding sysklogd, cronie, sshd, chronyd, and elogind services to startup"
