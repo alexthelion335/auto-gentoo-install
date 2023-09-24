@@ -18,6 +18,7 @@ eselect locale set 5
 echo -e "Updating environment after locale change"
 env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 echo -e "Installing Linux kernel and firmware"
+echo -e "# license for linux firmware \nsys-kernel/linux-firmware linux-fw-redistributable\n" >> /etc/portage/package.license
 emerge sys-kernel/linux-firmware
 emerge sys-kernel/installkernel-gentoo
 emerge sys-kernel/gentoo-kernel
@@ -31,8 +32,8 @@ emerge net-misc/dhcpcd net-misc/networkmanager
 echo -e "Starting dhcpcd and networkmanager services"
 rc-update add dhcpcd default
 rc-service dhcpcd start
-rc-update add networkmanager default
-rc-service networkmanager start
+rc-update add NetworkManager default
+rc-service NetworkManager start
 rm /etc/hosts
 echo -e "127.0.0.1    localhost\n::1        localhost\n127.0.1.1    ${hostname}.localdomain ${hostname}" >> /etc/hosts
 echo -e "\nHostname set!"
