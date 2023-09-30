@@ -45,7 +45,7 @@ mkdir -p /etc/portage/package.use
 echo "acct-user/git -git -gitea -gitolite" >> /etc/portage/package.use/git
 echo -e ">=dev-libs/libdbusmenu-16.04.0-r2 gtk3\n>=gnome-base/gnome-control-center-44.3 networkmanager\n>=media-libs/libcanberra-0.30-r7 pulseaudio\n>=media-plugins/alsa-plugins-1.2.7.1-r1 pulseaudio\n# required by www-client/firefox-102.15.1::gentoo[system-libvpx]\n# required by firefox (argument)\n>=media-libs/libvpx-1.13.0 postproc" >> /etc/portage/package.use/misc
 echo -e "Emerging tools and programs"
-emerge app-admin/sysklogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules nano vim sudo acct-user/git wget grub app-misc/screen elogind xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox konsole xterm mpv thunar kde-apps/dolphin picom inkscape gimp cmatrix lynx cowsay
+emerge app-admin/sysklogd sys-process/cronie net-misc/chrony sys-block/io-scheduler-udev-rules nano vim sudo acct-user/git wget grub app-misc/screen elogind xorg-server xf86-video-vesa neofetch openbox tint2 nitrogen gdm firefox konsole xterm mpv thunar kde-apps/dolphin picom inkscape gimp cmatrix lynx cowsay menumaker
 echo -e "Adding sysklogd, cronie, sshd, chronyd, and elogind services to startup"
 rc-update add sysklogd default
 rc-update add cronie default
@@ -62,11 +62,13 @@ printf "\n%%wheel ALL=(ALL) ALL" >> /etc/sudoers
 mkdir -p /home/$user/.config/openbox
 touch /home/$user/.config/openbox/autostart
 printf "\npicom &\nnitrogen --restore &\ntint2 &" >> /home/$user/.config/openbox/autostart
-echo -e "\nexec openbox" >> /home/$user/.xinitrc
+echo -e "\nexec openbox-session" >> /home/$user/.xinitrc
 echo -e "\nUser settings set!"
 grub-install --target=i386-pc $drive
 grub-mkconfig -o /boot/grub/grub.cfg
 echo -e "\nGrub installed!"
+mmaker -v OpenBox3
+echo -e "\nAdded programs to Openbox"
 echo -e "\nGentoo Linux configuration complete!\nYou will have to reboot."
 sleep 3
 exit
